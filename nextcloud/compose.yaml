@@ -1,0 +1,47 @@
+name: epic_erik
+services:
+  nextcloud:
+    cpu_shares: 90
+    command: []
+    container_name: nextcloud
+    deploy:
+      resources:
+        limits:
+          memory: 7848M
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - TZ=Asia/Jakarta
+    hostname: nextcloud
+    image: lscr.io/linuxserver/nextcloud:latest
+    labels:
+      icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/12fcfa5321c92b82bdd81a495c4e7648236ab3e0/svg/nextcloud.svg
+    ports:
+      - target: 443
+        published: "443"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/nextcloud/config
+        target: /config
+      - type: bind
+        source: /DATA/AppData/nextcloud/data
+        target: /data
+    devices: []
+    cap_add: []
+    network_mode: bridge
+    privileged: false
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/12fcfa5321c92b82bdd81a495c4e7648236ab3e0/svg/nextcloud.svg
+  index: /
+  is_uncontrolled: false
+  port_map: "443"
+  scheme: https
+  store_app_id: epic_erik
+  title:
+    custom: ""
+    en_us: nextcloud
